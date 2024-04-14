@@ -31,10 +31,7 @@ class Capture(QWidget):
 
             screen = QApplication.primaryScreen()
             rect = QApplication.desktop().rect()
-            self.imgmap = screen.grabWindow(
-                QApplication.desktop().winId(),
-                rect.x(), rect.y(), rect.width(), rect.height()
-            )
+            self.imgmap = screen.grabWindow(QApplication.desktop().winId(), rect.x(), rect.y(), rect.width(), rect.height())
 
     def mouseMoveEvent(self, event: QMouseEvent | None) -> None:
         if not self.origin.isNull():

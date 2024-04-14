@@ -18,7 +18,7 @@ def upload_image(image_path):
     else:
         return None
 
-def googleImage():
+def google_image():
     image_url = upload_image(f"{tempfile.gettempdir()}/screenshot.png")
     final_url = f"https://lens.google.com/uploadbyurl?url={image_url}"
 
