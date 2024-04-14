@@ -1,16 +1,16 @@
 import sys
-
 from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
     QLabel,
     QVBoxLayout,
+    QGridLayout,
     QFrame,
     QPushButton,
 )
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtGui import QPixmap, QRegion
 
 from services import search, capturer
 
@@ -18,11 +18,10 @@ class ScreenRegionSelector(QMainWindow):
     
     def __init__(self,):
         super().__init__(None)
-        self.m_width = 300
-        self.m_height = 100
 
+        self.setWindowFlag(Qt.FramelessWindowHint)
         self.setWindowTitle("Screenshot To Search")
-        self.setMinimumSize(self.m_width, self.m_height)
+        self.setFixedSize(300, 200)
 
         frame = QFrame()
         frame.setContentsMargins(0, 0, 0, 0)
@@ -30,9 +29,13 @@ class ScreenRegionSelector(QMainWindow):
         lay.setAlignment(Qt.AlignmentFlag.AlignTop)
         lay.setContentsMargins(5, 5, 5, 5)
 
+        buttons_layout = QGridLayout()
+
         self.label = QLabel()
-        self.btn_capture = QPushButton("Capture")
+        self.btn_capture = QPushButton("📸")
         self.btn_capture.clicked.connect(self.capture)
+        self.btn_close = QPushButton("❌")
+        self.btn_close.clicked.connect(self.close)
         
         appLogo = QPixmap("assets/logo.png")
         self.label.setPixmap(appLogo)
@@ -41,7 +44,12 @@ class ScreenRegionSelector(QMainWindow):
         lay.addSpacing(20)
         lay.addWidget(self.label)
         lay.addSpacing(20)
-        lay.addWidget(self.btn_capture)
+
+        buttons_layout.addWidget(self.btn_capture, 0, 0)
+        buttons_layout.addWidget(self.btn_close, 0, 1)
+        buttons_layout.setHorizontalSpacing(10)
+
+        lay.addLayout(buttons_layout)
         lay.addSpacing(20)
 
         self.setCentralWidget(frame)
@@ -62,16 +70,17 @@ if __name__ == "__main__":
                       
     QPushButton {
         border-radius: 12px;
-        background-color: #00A170;
+        background-color: #222222;
         padding: 10px;
         color: white;
+        font-size: 24px;
         font-weight: bold;
         font-family: Arial;
-        font-size: 12px;
+        text-align: center;
     }
                       
     QPushButton::hover {
-        background-color: #008059;
+        background-color: #333333;
     }
     """)
     selector = ScreenRegionSelector()

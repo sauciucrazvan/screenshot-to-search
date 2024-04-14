@@ -47,15 +47,11 @@ class Capture(QWidget):
             self.imgmap = self.imgmap.copy(rect)
             QApplication.restoreOverrideCursor()
 
-            clipboard = QApplication.clipboard()
-            clipboard.setPixmap(self.imgmap)
-
             image_path = f"{tempfile.gettempdir()}/screenshot.png"
             self.imgmap.save(image_path)
             self.imageCaptured.emit(image_path)
 
             self.main.show()
-
             self.close()
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
