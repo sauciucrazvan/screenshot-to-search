@@ -1,5 +1,6 @@
 import requests
 import webbrowser
+import tempfile
 
 from credentials import api_key
 
@@ -18,7 +19,7 @@ def upload_image(image_path):
         return None
 
 def searchImage():
-    image_url = upload_image("screenshot.png")
+    image_url = upload_image(f"{tempfile.gettempdir()}/screenshot.png")
     final_url = f"https://lens.google.com/uploadbyurl?url={image_url}"
 
     webbrowser.open(final_url)

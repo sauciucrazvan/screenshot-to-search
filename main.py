@@ -10,9 +10,9 @@ from PyQt5.QtWidgets import (
 )
 
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 
-from search import *
-from capturer import Capture
+from services import search, capturer
 
 class ScreenRegionSelector(QMainWindow):
     
@@ -33,15 +33,22 @@ class ScreenRegionSelector(QMainWindow):
         self.label = QLabel()
         self.btn_capture = QPushButton("Capture")
         self.btn_capture.clicked.connect(self.capture)
+        
+        appLogo = QPixmap("assets/logo.png")
+        self.label.setPixmap(appLogo)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
+        lay.addSpacing(20)
         lay.addWidget(self.label)
+        lay.addSpacing(20)
         lay.addWidget(self.btn_capture)
+        lay.addSpacing(20)
 
         self.setCentralWidget(frame)
 
     def capture(self):
-        self.capturer = Capture(self)
-        self.capturer.imageCaptured.connect(searchImage)
+        self.capturer = capturer.Capture(self)
+        self.capturer.imageCaptured.connect(search.searchImage)
         self.capturer.show()
 
 if __name__ == "__main__":
@@ -51,7 +58,7 @@ if __name__ == "__main__":
         background-color: #121212;
         padding-right: 20px;
         padding-left: 20px;
-    }
+    } 
                       
     QPushButton {
         border-radius: 12px;
@@ -64,7 +71,7 @@ if __name__ == "__main__":
     }
                       
     QPushButton::hover {
-        background-color: #008059
+        background-color: #008059;
     }
     """)
     selector = ScreenRegionSelector()

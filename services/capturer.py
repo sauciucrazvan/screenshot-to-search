@@ -1,6 +1,7 @@
 from PyQt5.QtCore import Qt, QPoint, QRect, pyqtSignal
 from PyQt5.QtWidgets import QWidget, QRubberBand, QApplication
 from PyQt5.QtGui import QMouseEvent, QKeyEvent
+import tempfile
 
 class Capture(QWidget):
     imageCaptured = pyqtSignal(str)
@@ -49,7 +50,7 @@ class Capture(QWidget):
             clipboard = QApplication.clipboard()
             clipboard.setPixmap(self.imgmap)
 
-            image_path = "C:\Users\AppData\Local\Temp\screenshot.png"
+            image_path = f"{tempfile.gettempdir()}/screenshot.png"
             self.imgmap.save(image_path)
             self.imageCaptured.emit(image_path)
 
