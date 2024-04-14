@@ -1,16 +1,8 @@
 import sys
-from PyQt5.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QLabel,
-    QVBoxLayout,
-    QGridLayout,
-    QFrame,
-    QPushButton,
-)
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QVBoxLayout, QGridLayout, QFrame, QPushButton)
 
-from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QPixmap, QRegion
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 
 from services import search, capturer
 
@@ -21,7 +13,7 @@ class ScreenRegionSelector(QMainWindow):
 
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setWindowTitle("Screenshot To Search")
-        self.setFixedSize(300, 200)
+        self.setFixedSize(300, 180)
 
         frame = QFrame()
         frame.setContentsMargins(0, 0, 0, 0)
@@ -31,18 +23,18 @@ class ScreenRegionSelector(QMainWindow):
 
         buttons_layout = QGridLayout()
 
-        self.label = QLabel()
-        self.btn_capture = QPushButton("📸")
+        self.lbl_logo = QLabel()
+        self.btn_capture = QPushButton("Capture")
         self.btn_capture.clicked.connect(self.capture)
-        self.btn_close = QPushButton("❌")
+        self.btn_close = QPushButton("Close")
         self.btn_close.clicked.connect(self.close)
         
         appLogo = QPixmap("assets/logo.png")
-        self.label.setPixmap(appLogo)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.lbl_logo.setPixmap(appLogo)
+        self.lbl_logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         lay.addSpacing(20)
-        lay.addWidget(self.label)
+        lay.addWidget(self.lbl_logo)
         lay.addSpacing(20)
 
         buttons_layout.addWidget(self.btn_capture, 0, 0)
@@ -50,13 +42,12 @@ class ScreenRegionSelector(QMainWindow):
         buttons_layout.setHorizontalSpacing(10)
 
         lay.addLayout(buttons_layout)
-        lay.addSpacing(20)
 
         self.setCentralWidget(frame)
 
     def capture(self):
         self.capturer = capturer.Capture(self)
-        self.capturer.imageCaptured.connect(search.searchImage)
+        self.capturer.imageCaptured.connect(search.googleImage)
         self.capturer.show()
 
 if __name__ == "__main__":
@@ -73,7 +64,7 @@ if __name__ == "__main__":
         background-color: #222222;
         padding: 10px;
         color: white;
-        font-size: 24px;
+        font-size: 16px;
         font-weight: bold;
         font-family: Arial;
         text-align: center;

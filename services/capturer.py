@@ -1,7 +1,8 @@
+import tempfile
+
 from PyQt5.QtCore import Qt, QPoint, QRect, pyqtSignal
 from PyQt5.QtWidgets import QWidget, QRubberBand, QApplication
 from PyQt5.QtGui import QMouseEvent, QKeyEvent
-import tempfile
 
 class Capture(QWidget):
     imageCaptured = pyqtSignal(str)

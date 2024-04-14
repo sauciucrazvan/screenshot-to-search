@@ -1,1 +1,4 @@
 credentials.py
+
+.vscode
+__pycache__
