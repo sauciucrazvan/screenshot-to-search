@@ -1,1 +1,7 @@
+# on the root folder
 python -m PyInstaller screenshot-to-search.py --i "assets/logo.png" --noconsole --onefile
+
+# under the application folder
+python -m PyInstaller app.py --icon "../assets/logo.png" --noconfirm --noconsole
+
+# move the app build folder in the root/dist folder and rename it to bin
