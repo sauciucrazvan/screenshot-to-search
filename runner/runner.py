@@ -7,7 +7,7 @@ def main():
     while True:
         if keyboard.is_pressed("ctrl+shift+j"):
             if not started:
-                subprocess.Popen("app.exe")
+                subprocess.Popen("bin/app.exe")
                 started = True
         else:
             started = False
