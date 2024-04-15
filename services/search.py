@@ -1,6 +1,4 @@
-import requests
-import webbrowser
-import tempfile
+import requests, webbrowser, tempfile, sys
 
 from credentials import api_key
 
@@ -23,3 +21,5 @@ def google_image():
     final_url = f"https://lens.google.com/uploadbyurl?url={image_url}"
 
     webbrowser.open(final_url)
+
+    sys.exit()

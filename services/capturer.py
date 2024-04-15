@@ -1,4 +1,4 @@
-import tempfile
+import sys, tempfile
 
 from PyQt5.QtCore import Qt, QPoint, QRect, pyqtSignal
 from PyQt5.QtWidgets import QWidget, QRubberBand, QApplication
@@ -54,6 +54,4 @@ class Capture(QWidget):
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
         if event.key() == Qt.Key_Escape:
-            QApplication.restoreOverrideCursor()
-            self.main.show()
-            self.close()
+            sys.exit()
