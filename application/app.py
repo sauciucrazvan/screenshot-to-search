@@ -33,7 +33,6 @@ class ScreenshotToSearch(QMainWindow):
         self.search_thread.searchFinished.connect(self.close_application)
 
     def close_application(self):
-        print("called")
         QApplication.quit()
         sys.exit()
 
