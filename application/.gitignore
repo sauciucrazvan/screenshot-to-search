@@ -1,8 +1,7 @@
-credentials.py
-
 build/
 dist/
 *.spec
+cred.py
 
 .vscode
 __pycache__
