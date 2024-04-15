@@ -1,4 +1,8 @@
+build/
+dist/
+
 credentials.py
+*.spec
 
 .vscode
 __pycache__

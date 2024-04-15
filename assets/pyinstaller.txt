@@ -1,0 +1,1 @@
+python -m PyInstaller screenshot-to-search.py --i "assets/logo.png" --noconsole --onefile
