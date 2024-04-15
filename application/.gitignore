@@ -1,0 +1,8 @@
+credentials.py
+
+build/
+dist/
+*.spec
+
+.vscode
+__pycache__
