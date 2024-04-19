@@ -1,7 +1,8 @@
 import sys
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import QThread, pyqtSignal
+
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel, QGridLayout
+from PyQt5.QtCore import QThread, pyqtSignal, Qt
 
 from services import capturer, search
 
@@ -18,7 +19,30 @@ class GoogleSearchThread(QThread):
 class ScreenshotToSearch(QMainWindow):
     
     def __init__(self):
-        super().__init__(None)
+        super().__init__()
+
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+
+        self.setWindowTitle("Screenshot to Search")
+        self.setWindowIcon(QIcon("../assets/logo.ico"))
+        self.setStyleSheet("background-color: #121212; color: white; font-size: 16px; border-radius: 25px; padding: 16px;")
+
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+
+        layout = QGridLayout(central_widget)
+
+        logo_label = QLabel()
+        logo_pixmap = QPixmap("../assets/logo.png")
+        logo_label.setPixmap(logo_pixmap)
+        logo_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(logo_label, 0, 0, 1, 2)
+
+        self.label = QLabel("Please wait while we do our magic... :)")
+        self.label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(self.label, 1, 0, 1, 2)
+
         self.capture()
 
     def capture(self):
@@ -34,13 +58,9 @@ class ScreenshotToSearch(QMainWindow):
 
     def close_application(self):
         QApplication.quit()
-        sys.exit()
 
 def main():
     app = QApplication(sys.argv)
-
-    app.setApplicationDisplayName("Screenshot to Search")
-    app.setWindowIcon(QIcon("./assets/logo.ico"))
 
     sts = ScreenshotToSearch()
     sys.exit(app.exec_())
