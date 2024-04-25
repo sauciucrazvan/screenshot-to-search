@@ -1,10 +1,10 @@
-import requests, webbrowser, tempfile
+import requests, webbrowser, tempfile, yaml, sys
 from . import cred
 
 def upload_image(image_path):
     upload_url = "https://api.imgbb.com/1/upload"
     params = {
-        "key": cred.getApiKey(), # https://api.imgbb.com/
+        "key": cred.getApiKey(),
         "expiration": 60
     }
     files = {"image": open(image_path, "rb")}

@@ -1,7 +1,7 @@
 import sys
 
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel, QGridLayout
+from PyQt5.QtGui import QIcon, QPixmap, QKeyEvent
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QGridLayout
 from PyQt5.QtCore import QThread, pyqtSignal, Qt
 
 from services import capturer, search
@@ -51,7 +51,7 @@ class ScreenshotToSearch(QMainWindow):
 
         self.search_thread = GoogleSearchThread()
         self.capturer.imageCaptured.connect(self.start_search_thread)
-
+    
     def start_search_thread(self):
         self.search_thread.start()
         self.search_thread.searchFinished.connect(self.close_application)
@@ -62,8 +62,9 @@ class ScreenshotToSearch(QMainWindow):
 def main():
     app = QApplication(sys.argv)
 
-    sts = ScreenshotToSearch()
+    ScreenshotToSearch()
     sys.exit(app.exec_())
+    
 
 if __name__ == "__main__":
     main()

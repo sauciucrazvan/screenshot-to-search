@@ -23,6 +23,10 @@ class Capture(QWidget):
 
         QApplication.setOverrideCursor(Qt.CrossCursor)
 
+    def keyPressEvent(self, event: QKeyEvent) -> None:
+        if event.key() == Qt.Key_Escape:
+            sys.exit()
+
     def mousePressEvent(self, event: QMouseEvent | None) -> None:
         if event.button() == Qt.LeftButton:
             self.origin = event.pos()
@@ -51,7 +55,3 @@ class Capture(QWidget):
 
             self.main.show()
             self.close()
-
-    def keyPressEvent(self, event: QKeyEvent) -> None:
-        if event.key() == Qt.Key_Escape:
-            sys.exit()
