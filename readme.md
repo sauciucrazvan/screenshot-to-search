@@ -7,9 +7,6 @@
 
 - Take a screenshot and automatically search it with Google Lens.
 
-> This is just a demonstration of a concept. Built in around ~8 hours.
-Written in Python with PyQt. Uses ImgBB as the image storing provider via their API.
-
 ## Installation and Usage
 
 - Go to the [releases tab](https://github.com/sauciucrazvan/screenshot-to-search/releases/) and download the latest version.
