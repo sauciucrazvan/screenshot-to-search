@@ -15,7 +15,7 @@
 
 ## Snapshot
 
-![](https://i.imgur.com/lW5SFTM.gif)
+![](https://razvansauciuc.dev/projects/screenshot-to-search.gif)
 
 ## Structure
 
@@ -42,3 +42,4 @@ def getApiKey():
 ## License
 
 Feel free to fork, edit or do whatever you want with the source-code & application.
+
